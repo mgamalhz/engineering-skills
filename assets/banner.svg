@@ -28,9 +28,9 @@
       <circle cx="84" cy="366" r="4" fill="#E8C766"/>
       <text x="96" y="371" fill="#E5E5E5">database-design</text>
 
-      <rect x="236" y="348" width="132" height="36" rx="18" fill="#E8C766" fill-opacity="0.12" stroke="#E8C766" stroke-opacity="0.35"/>
+      <rect x="236" y="348" width="120" height="36" rx="18" fill="#E8C766" fill-opacity="0.12" stroke="#E8C766" stroke-opacity="0.35"/>
       <circle cx="256" cy="366" r="4" fill="#E8C766"/>
-      <text x="268" y="371" fill="#EFD88F">code-review</text>
+      <text x="268" y="371" fill="#EFD88F">code-audit</text>
 
       <rect x="64" y="300" width="128" height="36" rx="18" fill="#141414" stroke="#FFFFFF" stroke-opacity="0.1"/>
       <circle cx="84" cy="318" r="4" fill="#E8C766"/>

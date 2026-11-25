@@ -1,6 +1,6 @@
 ---
-name: code-review
-description: Use when asked to review a pull request, a branch, a diff, a commit, or code from a junior developer or a student. Reviews the change against the `architecture`, `security`, `performance` and `database-design` skills and returns a structured report: a verdict, then blockers, should-fix items and suggestions, each with the file and line, a concrete failure scenario and the fix. Has a teaching mode that explains the principle behind each finding.
+name: code-audit
+description: Use when asked to audit or review a pull request, a branch, a diff, a commit, or code from a junior developer or a student. Audits the change against the `architecture`, `security`, `performance` and `database-design` skills and returns a structured report: a verdict, then blockers, should-fix items and suggestions, each with the file and line, a concrete failure scenario and the fix. Has a teaching mode that explains the principle behind each finding.
 ---
 
 > This skill is the process and the report format. The rules come from the `architecture`, `security`, `performance` and `database-design` skills; load the ones the change touches and don't restate their rules here.

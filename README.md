@@ -45,14 +45,17 @@ them.
 | **[`security`](skills/security/SKILL.md)**<br>what crosses a trust boundary | IDOR · mass assignment · tenancy · rate limiting · XSS · uploads · webhooks · tests, errors, logging, migrations, API stability |
 | **[`performance`](skills/performance/SKILL.md)**<br>what code costs at runtime | N+1 and eager loading · indexes that match real queries · pagination · cache invalidation · queues · memory |
 | **[`database-design`](skills/database-design/SKILL.md)**<br>the shape of the data | Money types · price snapshots · foreign keys and delete rules · soft deletes vs unique · enums · UTC · public IDs · zero-downtime migrations |
-| **[`code-review`](skills/code-review/SKILL.md)**<br>runs them all on a change | Reviews a PR, a branch or a junior's code against the four skills · verdict, blockers, should-fix, suggestions · file, line, scenario and fix · teaching mode |
+| **[`code-audit`](skills/code-audit/SKILL.md)**<br>runs them all on a change | Audits a PR, a branch or a junior's code against these standards · verdict, blockers, should-fix, suggestions · file, line, scenario and fix · teaching mode |
 
 Principles are language-agnostic, with exact Laravel APIs where it matters.
-The four rule skills don't overlap; each points to the others. `code-review`
+The four rule skills don't overlap; each points to the others. `code-audit`
 adds no rules of its own: it's the process and the report format that runs
 them together.
 
-Try it: *"Review this branch with the code-review skill."*
+In Claude Code, use it alongside the built-in `/code-review`: that one hunts
+bugs, `code-audit` checks these standards and can teach.
+
+Try it: *"Audit this branch with the code-audit skill."*
 
 ## Install
 
