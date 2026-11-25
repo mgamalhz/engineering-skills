@@ -30,7 +30,7 @@ Works with Claude Code, Cursor, Codex and any agent that reads
 ## How it works
 
 <p align="center">
-  <img src="assets/how-it-works.svg" alt="1. You ask for a change. 2. The matching skill loads from its description. 3. The agent proves the rules hold with tests and greps before it says done." width="100%">
+  <img src="assets/skills-map.svg" alt="Skills map: architecture, security, performance and database-design are the rules and load when the task matches. code-audit runs all four on a pull request or branch. One line in CLAUDE.md runs them before every commit." width="100%">
 </p>
 
 Every skill ends with a **Before You Call It Done** checklist: the tests to
