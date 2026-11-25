@@ -9,7 +9,7 @@
     {
       "name": "engineering",
       "source": "./",
-      "description": "Architecture, security and performance standards."
+      "description": "Architecture, security, performance and database-design standards, and a code-review process."
     }
   ]
 }

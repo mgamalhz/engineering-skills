@@ -24,6 +24,8 @@ Works with Claude Code, Cursor, Codex and any agent that reads
 | Webhook without a signature check | Anyone can mark an order as paid | `security` |
 | `$order->customer` inside `foreach` | One query per row; the page dies at 10k rows | `performance` |
 | `->get()` on a growing table | The whole table loads into memory | `performance` |
+| Money stored as `float` | Invoices are off by a cent, and totals don't match | `database-design` |
+| Order line reads the product's current price | Old invoices change when the price changes | `database-design` |
 
 ## How it works
 
@@ -42,9 +44,15 @@ them.
 | **[`architecture`](skills/architecture/SKILL.md)**<br>where code lives | Thin controllers and a service layer · transaction vs queue · race conditions and row locks · idempotent writes · status state machines |
 | **[`security`](skills/security/SKILL.md)**<br>what crosses a trust boundary | IDOR · mass assignment · tenancy · rate limiting · XSS · uploads · webhooks · tests, errors, logging, migrations, API stability |
 | **[`performance`](skills/performance/SKILL.md)**<br>what code costs at runtime | N+1 and eager loading · indexes that match real queries · pagination · cache invalidation · queues · memory |
+| **[`database-design`](skills/database-design/SKILL.md)**<br>the shape of the data | Money types · price snapshots · foreign keys and delete rules · soft deletes vs unique · enums · UTC · public IDs · zero-downtime migrations |
+| **[`code-review`](skills/code-review/SKILL.md)**<br>runs them all on a change | Reviews a PR, branch or student's code against the four skills · verdict, blockers, should-fix, suggestions · file, line, scenario and fix · mentoring mode |
 
 Principles are language-agnostic, with exact Laravel APIs where it matters.
-The three don't overlap; each points to the others.
+The four rule skills don't overlap; each points to the others. `code-review`
+adds no rules of its own: it's the process and the report format that runs
+them together.
+
+Try it: *"Review this branch with the code-review skill."*
 
 ## Install
 

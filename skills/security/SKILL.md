@@ -3,7 +3,7 @@ name: security
 description: Use when writing or reviewing code that handles user input, authentication, authorization, records owned by a user or tenant, file uploads, webhooks, payments, secrets or API responses, and before calling any change done (tests, error handling, logging, migrations, API stability). Covers the common Laravel holes (IDOR, mass assignment, tenancy, rate limiting, XSS, uploads, webhooks). Runtime cost is the `performance` skill; code structure is the `architecture` skill.
 ---
 
-> Scope: this skill covers trust boundaries plus cross-cutting delivery standards (testing, error handling, logging, migrations, API stability). The error response format and API versioning live here only. Runtime cost (N+1, indexes, caching, queues, pagination) is the `performance` skill. Code structure/layering/SRP is the `architecture` skill. Avoid duplicating their guidance here.
+> Scope: this skill covers trust boundaries plus cross-cutting delivery standards (testing, error handling, logging, migrations, API stability). The error response format and API versioning live here only. Runtime cost (N+1, indexes, caching, queues, pagination) is the `performance` skill. Code structure/layering/SRP is the `architecture` skill. Schema design (types, keys, constraints, safe table changes) is the `database-design` skill. Avoid duplicating their guidance here.
 
 ## 1. Security
 - Secrets: Zero tolerance for hardcoded API keys, tokens, or passwords. Use environment variables.

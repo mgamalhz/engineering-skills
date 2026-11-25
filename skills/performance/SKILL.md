@@ -9,7 +9,7 @@ description: Use when writing or reviewing list endpoints, queries over growing 
 - Stateless: Services should be stateless so the app scales horizontally. No per-request state on singletons.
 - Bounded work: Any operation over a user-growable dataset (all orders, all photos) must be bounded — paginate, chunk, or stream. Assume the table has millions of rows.
 
-> Scope: this skill covers runtime cost (queries, memory, latency, throughput). It does **not** cover code structure/layering/SRP — that's the `architecture` skill — nor trust boundaries — that's the `security` skill.
+> Scope: this skill covers runtime cost (queries, memory, latency, throughput). It does **not** cover code structure/layering/SRP — that's the `architecture` skill — nor trust boundaries — that's the `security` skill — nor column types, keys and constraints — that's the `database-design` skill.
 
 ## 2. Query Performance
 - N+1: Never run a query inside a loop over a result set. Eager-load relations up front (`with`, `load`) or batch into a single query.
