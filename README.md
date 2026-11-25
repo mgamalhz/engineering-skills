@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/banner.svg" alt="claude-skills: engineering rules for coding agents. They catch the bugs that pass every test." width="100%">
+  <img src="assets/banner.svg" alt="claude-skills: install once and your AI coding agent follows senior engineering rules and checks its own code before it says done." width="100%">
 </p>
 
 <p align="center">

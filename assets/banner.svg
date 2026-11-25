@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="440" viewBox="0 0 1280 440" role="img" aria-label="claude-skills: engineering rules for coding agents">
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="460" viewBox="0 0 1280 460" role="img" aria-label="claude-skills: install once and your AI coding agent follows senior engineering rules and checks its own code before it says done. Example: the agent wrote code and all tests passed, but the skills caught an email sent inside a transaction, an order any user could read, and one query per row.">
   <defs>
     <radialGradient id="glow" cx="88%" cy="0%" r="70%">
       <stop offset="0" stop-color="#E8C766" stop-opacity="0.16"/>
@@ -9,78 +9,64 @@
     </pattern>
   </defs>
 
-  <rect width="1280" height="440" rx="24" fill="#0A0A0A"/>
-  <rect width="1280" height="440" rx="24" fill="url(#grid)"/>
-  <rect width="1280" height="440" rx="24" fill="url(#glow)"/>
-  <rect x="0.5" y="0.5" width="1279" height="439" rx="23.5" fill="none" stroke="#FFFFFF" stroke-opacity="0.08"/>
+  <rect width="1280" height="460" rx="24" fill="#0A0A0A"/>
+  <rect width="1280" height="460" rx="24" fill="url(#grid)"/>
+  <rect width="1280" height="460" rx="24" fill="url(#glow)"/>
+  <rect x="0.5" y="0.5" width="1279" height="459" rx="23.5" fill="none" stroke="#FFFFFF" stroke-opacity="0.08"/>
 
-  <!-- Left: title -->
+  <!-- Left: what it is, what it does, how to get it -->
   <g font-family="ui-sans-serif, -apple-system, 'Segoe UI', Inter, Helvetica, Arial, sans-serif">
-    <rect x="64" y="64" width="132" height="30" rx="15" fill="#E8C766" fill-opacity="0.12" stroke="#E8C766" stroke-opacity="0.35"/>
-    <text x="130" y="84" text-anchor="middle" font-size="13" font-weight="600" letter-spacing="1.5" fill="#EFD88F">AGENT SKILLS</text>
+    <rect x="64" y="60" width="330" height="30" rx="15" fill="#E8C766" fill-opacity="0.12" stroke="#E8C766" stroke-opacity="0.35"/>
+    <text x="229" y="80" text-anchor="middle" font-size="13" font-weight="600" letter-spacing="1" fill="#EFD88F">FOR CLAUDE CODE · CURSOR · CODEX</text>
 
-    <text x="62" y="160" font-size="64" font-weight="800" letter-spacing="-2" fill="#FAFAFA">claude-skills</text>
-    <text x="64" y="206" font-size="22" fill="#A3A3A3">Engineering rules for coding agents.</text>
-    <text x="64" y="238" font-size="22" fill="#A3A3A3">They catch the bugs that pass every test.</text>
+    <text x="62" y="160" font-size="60" font-weight="800" letter-spacing="-2" fill="#FAFAFA">claude-skills</text>
 
-    <g font-size="15" font-weight="600">
-      <rect x="64" y="348" width="160" height="36" rx="18" fill="#141414" stroke="#FFFFFF" stroke-opacity="0.1"/>
-      <circle cx="84" cy="366" r="4" fill="#E8C766"/>
-      <text x="96" y="371" fill="#E5E5E5">database-design</text>
+    <text x="64" y="208" font-size="23" fill="#E5E5E5">Install once. Your AI coding agent follows</text>
+    <text x="64" y="240" font-size="23" fill="#E5E5E5">senior engineering rules, and checks its</text>
+    <text x="64" y="272" font-size="23" fill="#E5E5E5">own code before it says <tspan fill="#EFD88F" font-weight="600">done</tspan>.</text>
 
-      <rect x="236" y="348" width="120" height="36" rx="18" fill="#E8C766" fill-opacity="0.12" stroke="#E8C766" stroke-opacity="0.35"/>
-      <circle cx="256" cy="366" r="4" fill="#E8C766"/>
-      <text x="268" y="371" fill="#EFD88F">code-audit</text>
+    <rect x="64" y="318" width="476" height="56" rx="12" fill="#141414" stroke="#FFFFFF" stroke-opacity="0.12"/>
+    <text x="88" y="352" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="17" fill="#737373">$ <tspan fill="#E5E5E5">/plugin install</tspan> <tspan fill="#EFD88F">engineering@mgamalhz</tspan></text>
 
-      <rect x="64" y="300" width="128" height="36" rx="18" fill="#141414" stroke="#FFFFFF" stroke-opacity="0.1"/>
-      <circle cx="84" cy="318" r="4" fill="#E8C766"/>
-      <text x="96" y="323" fill="#E5E5E5">architecture</text>
-
-      <rect x="204" y="300" width="104" height="36" rx="18" fill="#141414" stroke="#FFFFFF" stroke-opacity="0.1"/>
-      <circle cx="224" cy="318" r="4" fill="#E8C766"/>
-      <text x="236" y="323" fill="#E5E5E5">security</text>
-
-      <rect x="320" y="300" width="136" height="36" rx="18" fill="#141414" stroke="#FFFFFF" stroke-opacity="0.1"/>
-      <circle cx="340" cy="318" r="4" fill="#E8C766"/>
-      <text x="352" y="323" fill="#E5E5E5">performance</text>
-    </g>
+    <text x="64" y="408" font-size="15" fill="#737373">architecture · security · performance · database-design · code-audit</text>
   </g>
 
-  <!-- Right: review card -->
-  <g transform="translate(640 64)">
-    <rect width="576" height="312" rx="16" fill="#141414" stroke="#FFFFFF" stroke-opacity="0.1"/>
+  <!-- Right: a concrete before/after -->
+  <g transform="translate(640 60)">
+    <rect width="576" height="340" rx="16" fill="#141414" stroke="#FFFFFF" stroke-opacity="0.1"/>
     <circle cx="28" cy="28" r="6" fill="#2A2A2A"/>
     <circle cx="48" cy="28" r="6" fill="#2A2A2A"/>
     <circle cx="68" cy="28" r="6" fill="#2A2A2A"/>
-    <text x="96" y="33" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" fill="#737373">review before commit</text>
+    <text x="96" y="33" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Inter, Helvetica, Arial, sans-serif" font-size="14" fill="#A3A3A3">The agent wrote it. <tspan fill="#4ADE80">All tests pass.</tspan> But:</text>
     <line x1="0" y1="56" x2="576" y2="56" stroke="#FFFFFF" stroke-opacity="0.07"/>
 
     <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="15">
       <g transform="translate(28 96)">
         <text fill="#F87171">✗</text>
         <text x="24" fill="#E5E5E5">Mail::send() inside DB::transaction</text>
-        <text x="24" y="22" font-size="13" fill="#737373">email goes out for an order that rolled back</text>
+        <text x="24" y="22" font-size="13" fill="#A3A3A3">email goes out for an order that rolled back</text>
       </g>
-      <g transform="translate(28 160)">
+      <g transform="translate(28 164)">
         <text fill="#F87171">✗</text>
         <text x="24" fill="#E5E5E5">GET /orders/15 by another user</text>
-        <text x="24" y="22" font-size="13" fill="#737373">any user can read any order</text>
+        <text x="24" y="22" font-size="13" fill="#A3A3A3">any user can read any order</text>
       </g>
-      <g transform="translate(28 224)">
+      <g transform="translate(28 232)">
         <text fill="#F87171">✗</text>
         <text x="24" fill="#E5E5E5">$order-&gt;customer inside foreach</text>
-        <text x="24" y="22" font-size="13" fill="#737373">one query per row, slow at 10k rows</text>
+        <text x="24" y="22" font-size="13" fill="#A3A3A3">one query per row, slow at 10k rows</text>
       </g>
       <g font-size="12" font-weight="600" text-anchor="middle">
+        <text x="492" y="72" font-size="11" font-weight="400" fill="#737373">caught by</text>
         <rect x="436" y="80" width="112" height="24" rx="12" fill="#E8C766" fill-opacity="0.12"/>
         <text x="492" y="96" fill="#EFD88F">architecture</text>
-        <rect x="436" y="144" width="112" height="24" rx="12" fill="#E8C766" fill-opacity="0.12"/>
-        <text x="492" y="160" fill="#EFD88F">security</text>
-        <rect x="436" y="208" width="112" height="24" rx="12" fill="#E8C766" fill-opacity="0.12"/>
-        <text x="492" y="224" fill="#EFD88F">performance</text>
+        <rect x="436" y="148" width="112" height="24" rx="12" fill="#E8C766" fill-opacity="0.12"/>
+        <text x="492" y="164" fill="#EFD88F">security</text>
+        <rect x="436" y="216" width="112" height="24" rx="12" fill="#E8C766" fill-opacity="0.12"/>
+        <text x="492" y="232" fill="#EFD88F">performance</text>
       </g>
     </g>
-    <line x1="0" y1="268" x2="576" y2="268" stroke="#FFFFFF" stroke-opacity="0.07"/>
-    <text x="28" y="294" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" fill="#A3A3A3"><tspan fill="#4ADE80">✓</tspan>  3 issues found and fixed before commit</text>
+    <line x1="0" y1="286" x2="576" y2="286" stroke="#FFFFFF" stroke-opacity="0.07"/>
+    <text x="28" y="318" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Inter, Helvetica, Arial, sans-serif" font-size="15" fill="#E5E5E5"><tspan fill="#4ADE80">✓</tspan>  Caught and fixed before the commit, not in production.</text>
   </g>
 </svg>
