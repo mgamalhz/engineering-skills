@@ -1,6 +1,6 @@
 ---
 name: performance
-description: Global standards for Scalability and Performance — query efficiency (N+1, eager loading, indexes), pagination, caching and invalidation, async/queue offloading, memory/resource management, and Laravel-specific performance patterns.
+description: Use when writing or reviewing list endpoints, queries over growing tables, relationships, reports, exports, imports, caching, queued jobs, external API calls or long lists in the UI. Covers N+1 and eager loading, indexes, pagination, cache invalidation, queue offloading and memory, with Laravel-specific patterns and a query-count check. Code structure is the `architecture` skill; trust boundaries are the `security` skill.
 ---
 
 ## 1. Scalability & Throughput
@@ -16,7 +16,11 @@ description: Global standards for Scalability and Performance — query efficien
 - Eager loading: Load exactly the relations a code path uses — no more (over-eager loading wastes memory), no less (causes N+1).
 - Projection: Select only the columns you need (`select([...])`, `pluck`) instead of hydrating full models when a few fields suffice.
 - Existence/counts: Use `exists()`, `count()`, `withCount()` instead of loading a collection just to check `->isEmpty()` or `->count()`.
-- Indexes: Every column used in a `WHERE`, `JOIN`, `ORDER BY`, or foreign key must be indexed. Add the index in the same migration that introduces the access pattern.
+- Indexes: Index for the queries the app actually runs, not for every column.
+  - Foreign keys and columns that frequent queries filter, join or sort on get an index, added in the same migration that introduces the query.
+  - When a query filters on several columns, use one composite index in the query's order: equality columns first, then the range or sort column (`[tenant_id, status, created_at]` for `where tenant_id = ? and status = ? order by created_at`).
+  - Skip indexes on low-cardinality columns queried alone (a boolean, a two-value status). Every index slows writes and uses space.
+  - Check a new query with `EXPLAIN` when the table is large.
 - Large reads: Iterate large datasets with `chunk`, `chunkById`, `lazy`, or `cursor` — never `->get()` an unbounded table into memory.
 
 ## 3. Caching
@@ -26,7 +30,6 @@ description: Global standards for Scalability and Performance — query efficien
 - Never cache per-user authorization decisions in a shared key.
 
 ## 4. Async & Offloading
-- Use non-blocking, asynchronous operations for database and network calls where the framework supports it.
 - Offload slow or external work (email, image processing, third-party API calls, report generation) to a queue — never block the request/response cycle on it.
 - Make queued jobs idempotent and safe to retry; cap retries and define a failure path.
 - Batch outbound calls where possible instead of one call per record.
@@ -54,3 +57,12 @@ Apply these when the project is Laravel:
 - **Paginate:** `->paginate()` / `->cursorPaginate()` on every index endpoint; expose page size limits.
 - **Avoid hydrating to count:** `->count()` / `->exists()` at the query builder, not `->get()->count()`.
 - **Octane-safe:** no request state stored on container singletons; reset/avoid static accumulation.
+
+## 8. Before You Call It Done
+Prove the page doesn't slow down as data grows; don't assume it.
+
+- **Catch N+1 automatically:** in Laravel, `Model::preventLazyLoading(! app()->isProduction());` in `AppServiceProvider::boot()` throws on any lazy-loaded relation in local and test runs. Add it if the project doesn't have it, and fix what it finds.
+- **Count the queries:** for each list endpoint or report you touched, a feature test that seeds a few records, counts queries with `DB::enableQueryLog()` and `count(DB::getQueryLog())`, then seeds many more and asserts the count did not grow.
+- **Check the plan:** run `EXPLAIN` on new or changed queries against realistic data and confirm they use an index instead of a full table scan.
+- **Grep the diff** for Eloquent relation access inside `foreach`, `::all()`, `->get()` on a growable table without a limit, and `->get()->count()`.
+- Report what you measured, and what you couldn't.

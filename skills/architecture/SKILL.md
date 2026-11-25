@@ -1,6 +1,6 @@
 ---
 name: architecture
-description: Language-agnostic architecture standards for scalable, maintainable applications, including consistency boundaries (transaction vs queue, strong vs eventual consistency) and concurrency inside transactions (isolation levels, race conditions, row locks).
+description: Use when designing a feature, adding a controller, service, model, job or endpoint, deciding where code belongs, writing anything that changes money, stock, balances, orders or a status, or reviewing a pull request for structure. Covers SOLID, layers, ultra-thin controllers and a service layer, transaction vs queue boundaries, race conditions and row locks, idempotency and status state machines. Language-agnostic principles with Laravel examples. Trust boundaries are the `security` skill; runtime cost is the `performance` skill.
 ---
 
 ## 1. SOLID Principles
@@ -128,14 +128,8 @@ description: Language-agnostic architecture standards for scalable, maintainable
 | Delete | DELETE | /resources/:id | 204 no content |
 
 ### Response Format
-```
-Success: { data: {...}, meta: {...} }
-Error:   { error: { code, message, details? } }
-```
-
-### Versioning
-- Version from the start: `/api/v1/resources`
-- Support N-1 versions during deprecation
+- Success responses: `{ data: {...}, meta: {...} }`.
+- The error format and API versioning are defined in the `security` skill (Error Handling, API Stability). Follow them there; don't redefine them.
 
 ## 6. Dependency Management
 
@@ -167,7 +161,9 @@ Error:   { error: { code, message, details? } }
 
 ## 9. General Guidelines
 
-### Controller/Handler Responsibilities
+### Controller/Handler Responsibilities (Laravel examples)
+The principle applies to any framework; the rules below name Laravel's tools. In another framework, use its equivalent (request DTOs, serializers, a global error handler).
+
 **Core Philosophy:** The controller is strictly a traffic cop. It accepts input and returns output. No logic allowed.
 **Strict Guidelines for Ultra-Thin Controllers:**
 1.  **Orchestration Only:** Receive request → Call Service → Return Resource.
@@ -177,8 +173,6 @@ Error:   { error: { code, message, details? } }
 5.  **Implicit Binding:** Always use Route Model Binding (e.g., `show(Unit $unit)`) instead of manual ID lookups (`find($id)`).
 6.  **Strict Output:** return types must be explicit: `JsonResource`, `ResourceCollection`, or `Response` (e.g. 204). Never return raw arrays or `json_encode`.
 7. **Ultra Thin**: try to make the controller ultra thin
-
-
 
 ### Service Layer Requirement
 - **ALWAYS use a service layer between controller and model**
@@ -222,6 +216,14 @@ A transaction makes writes all-or-nothing; it does NOT stop two requests from ra
 - **Related reads that must agree** (a report, totals compared side by side, a backup/export) run in one transaction at `REPEATABLE READ` so every query sees the same snapshot. Separate queries under Read Committed can mix moments (read skew).
 - Know your database's default isolation level and what it does not cover; don't assume "ACID" means serializable.
 
+### Idempotent Writes
+Clients retry: a double-click, a timeout followed by a retry, a mobile app on a bad network. A write that charges money or creates an order must give the same result when it arrives twice.
+
+- Business-critical create endpoints (payments, orders, transfers, bookings) accept an idempotency key: a client-generated `Idempotency-Key` header, or a natural key such as the cart ID.
+- Store the key with a unique index alongside the result. A repeat with the same key returns the first result instead of running again; a repeat while the first is still running gets 409.
+- The unique index is what makes it safe. Checking "does this key exist?" in code and then inserting is the same read → decide → write race as above.
+- Calls to a payment provider pass the provider's own idempotency key, so a retried job doesn't charge twice.
+
 ### Signs of Violation
 - `Mail::send` / notification / HTTP call inside `DB::transaction`
 - Multi-row business write (order + items + payment) without a transaction
@@ -231,3 +233,28 @@ A transaction makes writes all-or-nothing; it does NOT stop two requests from ra
 - A report or dashboard whose related totals come from separate queries outside one snapshot
 - A queued job that fails silently with no retry cap or failure handler
 - Request latency dominated by side-effect work that the user never needed to wait for
+- A payment or order endpoint where submitting the same request twice creates two records or two charges
+
+## 11. Status Fields (State Machines)
+A `status` column that any code can set to any value becomes impossible to reason about: orders that are "shipped" but never "paid", or "cancelled" after "delivered".
+
+- List the states and the allowed transitions in one place, next to the model (a PHP enum with a `canTransitionTo()` method, or a state class per status).
+- Change the status only through named methods that check the transition: `$order->markAsPaid()`, `$order->cancel()`. Never `$order->update(['status' => ...])` from a controller or a job.
+- An illegal transition throws a domain exception; it never silently saves.
+- Side effects of a transition (email, stock release, refund) are dispatched by that method or by an event it fires, after commit, so every path that changes the status gets them.
+- Record transitions (who, when, from, to) when the history matters to the business.
+
+### Signs of Violation
+- `->update(['status' => ...])` or `->status = ...` in more than one place
+- `if ($order->status === 'paid' || $order->status === 'shipped')` checks spread across controllers and views
+- Status values as raw strings instead of an enum
+
+## 12. Before You Call It Done
+Check the structure of what you wrote, not just that it works:
+
+- **Controllers:** each action receives a `FormRequest` or bound model, calls one service method, and returns a Resource or a `Response`. No `try/catch`, no queries, no `if/else` on business rules.
+- **Transactions:** grep the diff for `DB::transaction` and read every block: no `Mail::`, `Notification::`, `Http::`, `dispatch(` without `afterCommit`, or other external calls inside it.
+- **Races:** for every read → decide → write on money, stock, seats, coupons or balances, point to the lock, atomic update or unique index that protects it.
+- **Idempotency:** a feature test that sends the same create request twice and asserts one record.
+- **Status changes:** a test that an illegal transition throws, for every transition you added.
+- Report what you verified and what you didn't.
