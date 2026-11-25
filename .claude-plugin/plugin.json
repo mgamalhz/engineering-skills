@@ -1,0 +1,13 @@
+{
+  "name": "engineering",
+  "version": "0.1.0",
+  "description": "Engineering standards for coding agents: architecture, security and performance.",
+  "author": {
+    "name": "Mohamed Gamal",
+    "url": "https://mgamalhz.com"
+  },
+  "homepage": "https://github.com/mgamalhz/claude-skills",
+  "repository": "https://github.com/mgamalhz/claude-skills",
+  "license": "MIT",
+  "keywords": ["architecture", "security", "performance", "code-review", "laravel"]
+}

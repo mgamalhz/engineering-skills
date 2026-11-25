@@ -1,0 +1,15 @@
+{
+  "name": "mgamalhz",
+  "description": "Engineering skills for coding agents by Mohamed Gamal.",
+  "owner": {
+    "name": "Mohamed Gamal",
+    "url": "https://mgamalhz.com"
+  },
+  "plugins": [
+    {
+      "name": "engineering",
+      "source": "./",
+      "description": "Architecture, security and performance standards."
+    }
+  ]
+}
