@@ -1,6 +1,6 @@
 ---
 name: code-review
-description: Use when asked to review a pull request, a branch, a diff, a commit or a student's code. Reviews the change against the `architecture`, `security`, `performance` and `database-design` skills and returns a structured report: a verdict, then blockers, should-fix items and suggestions, each with the file and line, a concrete failure scenario and the fix. Has a mentoring mode that explains the principle behind each finding.
+description: Use when asked to review a pull request, a branch, a diff, a commit, or code from a junior developer or a student. Reviews the change against the `architecture`, `security`, `performance` and `database-design` skills and returns a structured report: a verdict, then blockers, should-fix items and suggestions, each with the file and line, a concrete failure scenario and the fix. Has a teaching mode that explains the principle behind each finding.
 ---
 
 > This skill is the process and the report format. The rules come from the `architecture`, `security`, `performance` and `database-design` skills; load the ones the change touches and don't restate their rules here.
@@ -66,8 +66,8 @@ One or two sentences: what the change does and the main reason for the verdict.
 ```
 Keep each finding short. Group repeats of the same problem into one finding with every location listed.
 
-## 6. Mentoring Mode
-Use it when the code is a student's or a junior developer's, or when asked to teach.
+## 6. Teaching Mode
+Use it when reviewing code from a junior developer, a student, or anyone learning, or when asked to teach.
 
 - For each blocker and should-fix item, add one line of **why**: the principle behind the rule and what it protects against, in plain words.
 - Point them to the fix; for a student, describe it and let them write it, unless they ask for the code.
