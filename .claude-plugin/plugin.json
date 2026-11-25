@@ -6,8 +6,8 @@
     "name": "Mohamed Gamal",
     "url": "https://mgamalhz.com"
   },
-  "homepage": "https://github.com/mgamalhz/claude-skills",
-  "repository": "https://github.com/mgamalhz/claude-skills",
+  "homepage": "https://github.com/mgamalhz/engineering-skills",
+  "repository": "https://github.com/mgamalhz/engineering-skills",
   "license": "MIT",
   "keywords": ["architecture", "security", "performance", "database", "code-audit", "code-review", "laravel"]
 }

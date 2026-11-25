@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/banner.svg" alt="claude-skills: install once and your AI coding agent follows senior engineering rules and checks its own code before it says done." width="100%">
+  <img src="assets/banner.svg" alt="engineering-skills: install once and your AI coding agent follows senior engineering rules and checks its own code before it says done." width="100%">
 </p>
 
 <p align="center">
@@ -8,9 +8,9 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-E8C766?style=flat-square&labelColor=141414" alt="MIT license"></a>
 </p>
 
-The rules I give my coding agent, so it writes code the way I review it.
-Works with Claude Code, Cursor, Codex and any agent that reads
-[Agent Skills](https://agentskills.io).
+Agent skills for Claude Code, Cursor and Codex: the rules I give my coding
+agent, so it writes code the way I review it. Works with any agent that reads
+the [Agent Skills](https://agentskills.io) format.
 
 ## What it catches
 
@@ -62,14 +62,14 @@ Try it: *"Audit this branch with the code-audit skill."*
 **Claude Code**
 
 ```bash
-/plugin marketplace add mgamalhz/claude-skills
+/plugin marketplace add mgamalhz/engineering-skills
 /plugin install engineering@mgamalhz
 ```
 
 **Any agent**, via [skills.sh](https://skills.sh)
 
 ```bash
-npx skills add mgamalhz/claude-skills
+npx skills add mgamalhz/engineering-skills
 ```
 
 **Manually:** copy a folder from `skills/` into `~/.claude/skills/` (every
